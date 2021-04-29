@@ -493,9 +493,11 @@ Cuando preguntes en el foro, asegúrate de incluir esa información para que pod
            async function() {
                var ctx = this;
                return allUsers(async function(user) {
-                   await browser.visit("/groups");
                    ctx.msg_err = `El usuario ${user.username} no puede ver la lista de grupos correctamente`;
-                   browser.assert.text("#mainHeader > div.right > a:nth-child(1)", user.username);
+                   await browser.visit("/groups");
+                   // No comprobar el nombre del usuario, por los últimos cambios de Quiz_2020
+                   // Otra opción es extraer el HTML y ver si el texto contiene el nombre del usuario
+                   // browser.assert.text("#mainHeader > div.right > a:nth-child(1)", user.username);
                    let expected = user.admin? 1 : 0;
                    ctx.msg_err = `El usuario ${user.username} ${user.admin?'sí':'no'} debería poder editar`;
                    browser.assert.elements('a[href="/groups/1/edit"]', expected);
