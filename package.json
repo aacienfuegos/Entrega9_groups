@@ -10,6 +10,7 @@
         "assignmentId": "79813"
     },
     "dependencies": {
+        "autocorector": "^1.7.1",
         "nodegit": "^0.26.5"
     }
 }
